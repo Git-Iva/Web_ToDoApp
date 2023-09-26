@@ -2,16 +2,19 @@ import streamlit as st
 import functions
 
 todos = functions.get_todos()
+
+st.set_page_config(layout="wide")
 def add_todo():
     # session_state is a specific streamlit object, renders dict-like values
     todo = st.session_state["new_todo"] + "\n"
     todos.append(todo)
     functions.write_todos(todos)
 
+
 st.title("My Todo App")
 st.subheader("App for daily chores")
-st.write("Increases organizational efficiency")
-
+st.write("Increases organizational <b>efficiency</b>",
+         unsafe_allow_html=True)
 
 # the script is always executed for each user session
 for index, todo in enumerate(todos):
